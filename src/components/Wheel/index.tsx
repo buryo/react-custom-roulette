@@ -59,6 +59,7 @@ interface Props {
   startingOptionIndex?: number;
   pointerProps?: PointerProps;
   disableInitialAnimation?: boolean;
+  isPrizeCentered?: boolean;
 }
 
 const STARTED_SPINNING = 'started-spinning';
@@ -91,6 +92,7 @@ export const Wheel = ({
   startingOptionIndex = -1,
   pointerProps = {},
   disableInitialAnimation = DISABLE_INITIAL_ANIMATION,
+  isPrizeCentered = false,
 }: Props): JSX.Element | null => {
   const [wheelData, setWheelData] = useState<WheelData[]>([...data]);
   const [prizeMap, setPrizeMap] = useState<number[][]>([[0]]);
@@ -213,7 +215,8 @@ export const Wheel = ({
         ];
       const finalRotationDegreesCalculated = getRotationDegrees(
         selectedPrize,
-        getQuantity(prizeMap)
+        getQuantity(prizeMap),
+        isPrizeCentered
       );
       setFinalRotationDegrees(finalRotationDegreesCalculated);
     }
