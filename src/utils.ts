@@ -3,23 +3,15 @@ import { WEB_FONTS } from './strings';
 export const getRotationDegrees = (
   prizeNumber: number,
   numberOfPrizes: number,
-  randomDif = true
 ): number => {
   const degreesPerPrize = 360 / numberOfPrizes;
 
   const initialRotation = 43 + degreesPerPrize / 2;
 
-  const randomDifference = (-1 + Math.random() * 2) * degreesPerPrize * 0.35;
-
   const perfectRotation =
     degreesPerPrize * (numberOfPrizes - prizeNumber) - initialRotation;
 
-  const imperfectRotation =
-    degreesPerPrize * (numberOfPrizes - prizeNumber) -
-    initialRotation +
-    randomDifference;
-
-  const prizeRotation = randomDif ? imperfectRotation : perfectRotation;
+  const prizeRotation = perfectRotation;
 
   return numberOfPrizes - prizeNumber > numberOfPrizes / 2
     ? -360 + prizeRotation
